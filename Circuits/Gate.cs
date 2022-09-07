@@ -8,5 +8,6 @@ namespace Circuits
 {
     internal class Gate
     {
+
     }
 }
