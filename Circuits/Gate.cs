@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Circuits
 {
-    internal class Gate
+    public class Gate
     {
+
     }
 }
