@@ -46,7 +46,7 @@ namespace Circuits
         }
 
         /// <summary>
-        /// Gets and sets whether the fate is selected or not.
+        /// Gets and sets whether the gate is selected or not.
         /// </summary>
         public virtual bool Selected
         {
