@@ -201,13 +201,33 @@ namespace Circuits
         }
 
         /// <summary>
-        /// This will create a new and gate.
+        /// This will create a new AndGate.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void toolStripButtonAnd_Click(object sender, EventArgs e)
         {
             newGate = new AndGate(0, 0);
+        }
+
+        /// <summary>
+        /// This will create a new OrGate.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            newGate = new OrGate(0, 0);
+        }
+
+        /// <summary>
+        /// This will create a new NotGate.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            newGate = new NotGate(0, 0);
         }
 
 

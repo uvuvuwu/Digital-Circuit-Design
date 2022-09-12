@@ -27,7 +27,7 @@ namespace Circuits
         //How long the pin is when drawn
         protected int length;
         //The gate the pin belongs to
-        protected AndGate owner;
+        protected Gate owner;
         //The wire connected to the pin
         protected Wire connection;
 
@@ -39,7 +39,7 @@ namespace Circuits
         /// <param name="length"></param>
         public Pin(Gate gate, bool input, int length)
         {
-            this.owner = (AndGate)gate;
+            this.owner = gate;
             this.input = input;
             this.length = length;
         }
@@ -65,7 +65,7 @@ namespace Circuits
         /// This read-only property returns the gate that this pin
         /// belongs to.
         /// </summary>
-        public AndGate Owner
+        public Gate Owner
         {
             get { return owner; }
         }
