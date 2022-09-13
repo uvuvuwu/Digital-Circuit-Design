@@ -125,6 +125,9 @@ namespace Circuits
             pins[2].Y = y + HEIGHT / 2;
         }
 
+        /// <summary>
+        /// 
+        /// </summary
         public abstract void Evaluate();
     }
 }

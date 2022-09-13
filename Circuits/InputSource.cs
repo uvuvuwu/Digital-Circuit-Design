@@ -20,12 +20,19 @@ namespace Circuits
             MoveTo(x, y);
         }
 
+        /// <summary>
+        /// Gets and sets the Voltage
+        /// </summary>
         public bool Voltage
         { 
             get { return _voltage; } 
             set { _voltage = value; }
         }
 
+        /// <summary>
+        /// Draws the gate and the pins, different colours if selected
+        /// </summary>
+        /// <param name="paper"></param>
         public override void Draw(Graphics paper)
         {
             //Draw each of the pins
@@ -44,6 +51,7 @@ namespace Circuits
                 brush = normalBrush;
                 paper.FillRectangle(brush, left, top, WIDTH, HEIGHT);
             }
+
             SolidBrush brush1 = new SolidBrush(Color.Black);
             
             //If Voltage is true, fill circle in yellow
@@ -60,6 +68,11 @@ namespace Circuits
             }
         }
 
+        /// <summary>
+        /// to move the entire gate + pins to another position when selected.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public override void MoveTo(int x, int y)
         {
             //Debugging message
@@ -67,11 +80,14 @@ namespace Circuits
             //Set the position of the gate to the values passed in
             left = x;
             top = y;
-            // must move the pins too
+            //must move the pins too
             pins[0].X = x + WIDTH - GAP / 2;
             pins[0].Y = y + HEIGHT / 2;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override void Evaluate()
         {
         }
@@ -88,8 +104,10 @@ namespace Circuits
             int centreY = top + (HEIGHT - 5) / 2;
             int radius = (WIDTH - 5) / 2;
 
-            //Calculates the distance of the mouse position to the radius, if the distance is smaller than the radius, then the mouse is inside the circle
+            //Calculates the distance of the mouse position to the radius
             int distance = (int)Math.Sqrt(Math.Pow((mouseX - centreX), 2) + Math.Pow((mouseY - centreY), 2));
+
+            //if the distance is smaller than the radius, then the mouse is inside the circle
             if (distance < radius)
             {
                 return true;
