@@ -45,6 +45,18 @@ namespace Circuits
                 brush = normalBrush;
                 paper.FillRectangle(brush, left, top, WIDTH, HEIGHT);
             }
+            SolidBrush brush1 = new SolidBrush(Color.Black);
+            
+            if(Voltage)
+            {
+                brush1.Color = Color.Yellow;
+                paper.FillEllipse(brush1, left + 2, top + 2, WIDTH - 5, HEIGHT - 5);
+            }
+            else
+            {
+                brush1.Color = Color.Black;
+                paper.FillEllipse(brush1, left + 2, top + 2, WIDTH - 5, HEIGHT - 5);
+            }
         }
 
         public override void MoveTo(int x, int y)
@@ -62,5 +74,30 @@ namespace Circuits
         public override void Evaluate()
         {
         }
+
+        /// <summary>
+        /// Checks if the mouse is on the circle
+        /// </summary>
+        /// <param name="mouseX">X position of mouse</param>
+        /// <param name="mouseY">Y position of mouse</param>
+        /// <returns></returns>
+        public bool IsMouseOnCircle(int mouseX, int mouseY)
+        {
+            int centreX = left + (WIDTH - 5) / 2;
+            int centreY = top + (HEIGHT - 5) / 2;
+            int radius = (WIDTH - 5) / 2;
+
+            //Calculates the distance of the mouse position to the radius, if the distance is smaller than the radius, then the mouse is inside the circle
+            int distance = (int)Math.Sqrt(Math.Pow((mouseX - centreX), 2) + Math.Pow((mouseY - centreY), 2));
+            if (distance < radius)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }

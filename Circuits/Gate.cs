@@ -35,6 +35,8 @@ namespace Circuits
         //Has the gate been selected
         protected bool selected = false;
 
+        
+
         /// <summary>
         /// Initialises the gate
         /// </summary>
