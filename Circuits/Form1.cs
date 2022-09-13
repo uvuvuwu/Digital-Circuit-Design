@@ -91,19 +91,24 @@ namespace Circuits
                         g.Selected = true;
                         current = g;
                         this.Invalidate();
-                        break;
 
                         //Check if the gate clicked on is InputSource
-                        if(g is InputSource)
+                        if (g is InputSource)
                         {
-                            //If the mouse is on the circle, set voltage to true. I'm not sure how to do this
-                            //Need to set 'g' gate to an InputSource, which I've forgotten how to do
-
-                            //if(g.IsMouseOnCircle == true)
-                            //{
-
-                            //}
+                            //If the mouse is on the circle, set voltage to opposite voltage, true to false, false to true
+                            if (((InputSource)g).IsMouseOnCircle(e.X, e.Y))
+                            {
+                                if(((InputSource)g).Voltage == false)
+                                {
+                                    ((InputSource)g).Voltage = true;
+                                }
+                                else if(((InputSource)g).Voltage == true)
+                                {
+                                    ((InputSource)g).Voltage = false;
+                                }
+                            }
                         }
+                        break;
                     }
                 }
             }

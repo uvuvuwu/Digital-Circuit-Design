@@ -23,7 +23,6 @@ namespace Circuits
         public bool Voltage
         { 
             get { return _voltage; } 
-            //ask what value is!!
             set { _voltage = value; }
         }
 
@@ -47,11 +46,13 @@ namespace Circuits
             }
             SolidBrush brush1 = new SolidBrush(Color.Black);
             
+            //If Voltage is true, fill circle in yellow
             if(Voltage)
             {
                 brush1.Color = Color.Yellow;
                 paper.FillEllipse(brush1, left + 2, top + 2, WIDTH - 5, HEIGHT - 5);
             }
+            //Else voltage is false, fill circle in black
             else
             {
                 brush1.Color = Color.Black;
