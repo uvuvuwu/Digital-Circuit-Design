@@ -55,5 +55,9 @@ namespace Circuits
             pins[1].X = x + WIDTH + GAP + 10;
             pins[1].Y = y + 50 / 2;
         }
+
+        public override void Evaluate()
+        {
+        }
     }
 }

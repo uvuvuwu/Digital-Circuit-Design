@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Runtime.CompilerServices;
 
 namespace Circuits
 {
@@ -75,6 +76,10 @@ namespace Circuits
             //      using the code below.  You will need to space the pins out a bit more in the constructor.
             //      There are provided images for the other gates and selected versions of the gates as well.
             //paper.DrawImage(Properties.Resources.AndGate, Left, Top);
+        }
+
+        public override void Evaluate()
+        {
         }
     }
 }

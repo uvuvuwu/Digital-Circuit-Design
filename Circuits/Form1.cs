@@ -230,6 +230,21 @@ namespace Circuits
             newGate = new NotGate(0, 0);
         }
 
+        /// <summary>
+        /// Creates a new Input icon
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolStripButtonInput_Click(object sender, EventArgs e)
+        {
+            newGate = new InputSource(false, 0, 0);
+        }
+
+        private void toolStripButtonOutput_Click(object sender, EventArgs e)
+        {
+            newGate = new OutputLamp(false, 0, 0);
+        }
+
 
 
         /// <summary>

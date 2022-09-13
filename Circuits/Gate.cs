@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace Circuits
 {
-    public class Gate
+    public abstract class Gate
     {
         // left is the left-hand edge of the main part of the gate.
         // So the input pins are further left than left.
@@ -122,5 +122,7 @@ namespace Circuits
             pins[2].X = x + WIDTH + GAP;
             pins[2].Y = y + HEIGHT / 2;
         }
+
+        public abstract void Evaluate();
     }
 }

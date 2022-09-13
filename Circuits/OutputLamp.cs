@@ -1,43 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Drawing;
 
 namespace Circuits
 {
-    public class OrGate : Gate
+    public class OutputLamp : Gate
     {
-        public OrGate(int x, int y) : base(x, y)
+        protected bool _voltage;
+
+        public OutputLamp(bool voltage, int x, int y) : base(x, y)
         {
-            //Add the two input pins to the gate
-            pins.Add(new Pin(this, true, 20));
-            pins.Add(new Pin(this, true, 20));
+            _voltage = voltage;
             //Add the output pin to the gate
-            pins.Add(new Pin(this, false, 20));
+            pins.Add(new Pin(this, true, 20));
             //move the gate and the pins to the position passed in
             MoveTo(x, y);
         }
 
-        /// <summary>
-        /// Draws the gate in the normal colour or in the selected colour.
-        /// </summary>
-        /// <param name="paper"></param>
+        public bool Voltage
+        {
+            get { return _voltage; }
+            //ask what value is!!
+            set { _voltage = value; }
+        }
+
         public override void Draw(Graphics paper)
         {
             //Draw each of the pins
             foreach (Pin p in pins)
                 p.Draw(paper);
-
+            Brush brush;
             //Check if the gate has been selected
             if (selected)
             {
-                paper.DrawImage(Properties.Resources.OrGateAllRed, Left, Top);
+                brush = selectedBrush;
+                paper.FillRectangle(brush, left, top, WIDTH, HEIGHT);
+
             }
             else
             {
-                paper.DrawImage(Properties.Resources.OrGate, Left, Top);
+                brush = normalBrush;
+                paper.FillRectangle(brush, left, top, WIDTH, HEIGHT);
             }
         }
 
@@ -49,12 +55,8 @@ namespace Circuits
             left = x;
             top = y;
             // must move the pins too
-            pins[0].X = x - 5;
-            pins[0].Y = y + GAP + 5;
-            pins[1].X = x - 5;
-            pins[1].Y = y + HEIGHT - 5;
-            pins[2].X = x + WIDTH + GAP + 25;
-            pins[2].Y = y + HEIGHT / 2 + 5;
+            pins[0].X = x - GAP;
+            pins[0].Y = y + HEIGHT / 2;
         }
 
         public override void Evaluate()
