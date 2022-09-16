@@ -45,6 +45,21 @@ namespace Circuits
                 brush = normalBrush;
                 paper.FillRectangle(brush, left, top, WIDTH, HEIGHT);
             }
+
+            SolidBrush brush1 = new SolidBrush(Color.Black);
+
+            //If Voltage is true, fill circle in yellow
+            if (Voltage)
+            {
+                brush1.Color = Color.Yellow;
+                paper.FillEllipse(brush1, left + 2, top + 2, WIDTH - 5, HEIGHT - 5);
+            }
+            //Else voltage is false, fill circle in black
+            else
+            {
+                brush1.Color = Color.Black;
+                paper.FillEllipse(brush1, left + 2, top + 2, WIDTH - 5, HEIGHT - 5);
+            }
         }
 
         public override void MoveTo(int x, int y)
@@ -59,8 +74,18 @@ namespace Circuits
             pins[0].Y = y + HEIGHT / 2;
         }
 
-        public override void Evaluate()
+        public override bool Evaluate()
         {
+            if (Pins[0].InputWire.FromPin.Owner.Evaluate() == true)
+            {
+                Voltage = true;
+                return true;
+            }
+            else
+            {
+                Voltage = false;
+                return false;
+            }
         }
     }
 }

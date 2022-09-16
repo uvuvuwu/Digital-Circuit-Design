@@ -78,8 +78,16 @@ namespace Circuits
             //paper.DrawImage(Properties.Resources.AndGate, Left, Top);
         }
 
-        public override void Evaluate()
+        public override bool Evaluate()
         {
+            if (Pins[0].InputWire.FromPin.Owner.Evaluate() == true && Pins[1].InputWire.FromPin.Owner.Evaluate() == true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

@@ -128,6 +128,6 @@ namespace Circuits
         /// <summary>
         /// 
         /// </summary
-        public abstract void Evaluate();
+        public abstract bool Evaluate();
     }
 }

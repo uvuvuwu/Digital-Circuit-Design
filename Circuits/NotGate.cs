@@ -56,8 +56,16 @@ namespace Circuits
             pins[1].Y = y + 50 / 2;
         }
 
-        public override void Evaluate()
+        public override bool Evaluate()
         {
+            if (Pins[0].InputWire.FromPin.Owner.Evaluate() == true)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

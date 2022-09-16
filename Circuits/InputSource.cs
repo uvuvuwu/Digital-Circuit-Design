@@ -15,7 +15,7 @@ namespace Circuits
         {
             _voltage = voltage;
             //Add the output pin to the gate
-            pins.Add(new Pin(this, true, 20));
+            pins.Add(new Pin(this, false, 20));
             //move the gate and the pins to the position passed in
             MoveTo(x, y);
         }
@@ -35,37 +35,41 @@ namespace Circuits
         /// <param name="paper"></param>
         public override void Draw(Graphics paper)
         {
+            Brush brush;
             //Draw each of the pins
             foreach (Pin p in pins)
                 p.Draw(paper);
-            Brush brush;
+
             //Check if the gate has been selected
             if (selected)
             {
                 brush = selectedBrush;
-                paper.FillRectangle(brush, left, top, WIDTH, HEIGHT);
+                paper.FillRectangle(brush, left, top, WIDTH - 10, HEIGHT - 10);
 
             }
             else
             {
                 brush = normalBrush;
-                paper.FillRectangle(brush, left, top, WIDTH, HEIGHT);
+                paper.FillRectangle(brush, left, top, WIDTH - 10, HEIGHT - 10);
             }
-
+            
+            
             SolidBrush brush1 = new SolidBrush(Color.Black);
             
             //If Voltage is true, fill circle in yellow
             if(Voltage)
             {
                 brush1.Color = Color.Yellow;
-                paper.FillEllipse(brush1, left + 2, top + 2, WIDTH - 5, HEIGHT - 5);
+                paper.FillEllipse(brush1, left + 2, top + 2, WIDTH - 15, HEIGHT - 15);
             }
             //Else voltage is false, fill circle in black
             else
             {
                 brush1.Color = Color.Black;
-                paper.FillEllipse(brush1, left + 2, top + 2, WIDTH - 5, HEIGHT - 5);
+                paper.FillEllipse(brush1, left + 2, top + 2, WIDTH - 15, HEIGHT - 15);
             }
+
+            
         }
 
         /// <summary>
@@ -82,14 +86,15 @@ namespace Circuits
             top = y;
             //must move the pins too
             pins[0].X = x + WIDTH - GAP / 2;
-            pins[0].Y = y + HEIGHT / 2;
+            pins[0].Y = y + (HEIGHT - 10) / 2;
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public override void Evaluate()
+        public override bool Evaluate()
         {
+            return Voltage;
         }
 
         /// <summary>

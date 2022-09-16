@@ -262,6 +262,18 @@ namespace Circuits
             newGate = new OutputLamp(false, 0, 0);
         }
 
+        private void toolStripButtonEvaluate_Click(object sender, EventArgs e)
+        {
+            foreach(Gate gate in gatesList)
+            {
+                gate.Evaluate();
+                //if(gate is OutputLamp)
+                //{
+                //    gate.Evaluate();
+                //}
+            }
+        }
+
 
 
         /// <summary>
