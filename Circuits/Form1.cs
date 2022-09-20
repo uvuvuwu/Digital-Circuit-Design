@@ -54,6 +54,13 @@ namespace Circuits
         /// </summary>
         protected Gate newGate = null;
 
+        /// <summary>
+        /// New compound gate 
+        /// </summary>
+        protected Compound newCompound = null;
+
+        protected Form1 newForm = null;
+
         public Form1()
         {
             InitializeComponent();
@@ -89,6 +96,10 @@ namespace Circuits
                     if (g.IsMouseOn(e.X, e.Y))
                     {
                         g.Selected = true;
+                        //if (newForm.newCompound != null)
+                        //{
+                        //    newForm.newCompound.AddGate(g);
+                        //}
                         current = g;
                         this.Invalidate();
 
@@ -267,11 +278,44 @@ namespace Circuits
             foreach(Gate gate in gatesList)
             {
                 gate.Evaluate();
-                //if(gate is OutputLamp)
-                //{
-                //    gate.Evaluate();
-                //}
             }
+        }
+
+        /// <summary>
+        /// Copy button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            //If a gate is selected
+            if(current != null)
+            {
+                //Clone the currently selected gate
+                newGate = current.Clone();
+            }
+        }
+
+        /// <summary>
+        /// Starts a group
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            newForm = new Form1();
+            newForm.newCompound = new Compound(0, 0);
+        }
+
+        /// <summary>
+        /// Ends making of a compound gate
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolStripButtonEndGroup_Click(object sender, EventArgs e)
+        {
+            gatesList.Add(newForm.newCompound);
+            newForm.newCompound = null;
         }
 
 

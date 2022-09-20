@@ -123,5 +123,11 @@ namespace Circuits
             }
         }
 
+        public override Gate Clone()
+        {
+            InputSource cloneInputSource = new InputSource(_voltage, _x, _y); 
+            return cloneInputSource;
+        }
+
     }
 }

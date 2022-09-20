@@ -67,5 +67,11 @@ namespace Circuits
                 return true;
             }
         }
+
+        public override Gate Clone()
+        {
+            NotGate cloneNotGate = new NotGate(_x, _y);
+            return cloneNotGate;
+        }
     }
 }

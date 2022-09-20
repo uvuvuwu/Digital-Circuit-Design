@@ -87,5 +87,11 @@ namespace Circuits
                 return false;
             }
         }
+
+        public override Gate Clone()
+        {
+            OutputLamp cloneOutputLamp = new OutputLamp(_voltage, _x, _y);
+            return cloneOutputLamp;
+        }
     }
 }

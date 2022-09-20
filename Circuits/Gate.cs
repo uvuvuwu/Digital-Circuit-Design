@@ -25,6 +25,10 @@ namespace Circuits
         protected Brush selectedBrush = Brushes.Red;
         protected Brush normalBrush = Brushes.LightGray;
 
+        //Store x and y
+        protected int _x;
+        protected int _y;
+
 
         /// <summary>
         /// This is the list of all the pins of this gate.
@@ -44,7 +48,8 @@ namespace Circuits
         /// <param name="y"></param>
         public Gate(int x, int y)
         {
-            
+            _x = x;
+            _y = y;
         }
 
         /// <summary>
@@ -126,8 +131,11 @@ namespace Circuits
         }
 
         /// <summary>
-        /// 
-        /// </summary
+        /// This is the abstract Evaluate method that every subclass inherits to implement each of its own Evaluations
+        /// </summary>
+        /// <returns></returns>
         public abstract bool Evaluate();
+
+        public abstract Gate Clone();
     }
 }

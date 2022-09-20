@@ -89,5 +89,11 @@ namespace Circuits
                 return false;
             }
         }
+
+        public override Gate Clone()
+        {
+            AndGate cloneAndGate = new AndGate(_x, _y);
+            return cloneAndGate;
+        }
     }
 }
