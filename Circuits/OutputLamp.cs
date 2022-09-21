@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Circuits
 {
@@ -97,14 +98,18 @@ namespace Circuits
             {
                 //voltage and value are true
                 Voltage = true;
+                MessageBox.Show("The output is: " + Voltage);
                 return true;
+                
             }
             else
             {
                 //voltage and value are false
                 Voltage = false;
+                MessageBox.Show("The output is: " + Voltage);
                 return false;
             }
+            
         }
 
         /// <summary>

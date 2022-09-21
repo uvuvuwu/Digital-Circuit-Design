@@ -51,13 +51,26 @@ namespace Circuits
 
         public override void Draw(Graphics paper)
         {
-            //throw new NotImplementedException();
             //loop through the gates list to draw the gates in the compound group
             foreach (Gate gate in _gatesList)
             {
                 gate.Draw(paper);
 
+                //add toggle for selecting (different colours) so entire compound is selected
             }
+        }
+
+        public override bool IsMouseOn(int x, int y)
+        {
+            foreach(Gate g in _gatesList)
+            {
+                if (g.IsMouseOn(x, y))
+                {
+                    return true;
+                }
+            }
+            return false;
+
         }
     }
 }

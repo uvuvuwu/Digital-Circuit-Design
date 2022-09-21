@@ -96,7 +96,7 @@ namespace Circuits
                     if (g.IsMouseOn(e.X, e.Y))
                     {
                         g.Selected = true;
-                        if (newForm.newCompound != null)
+                        if (newForm != null && newForm.newCompound != null)
                         {
                             newForm.newCompound.AddGate(g);
                         }
@@ -327,6 +327,11 @@ namespace Circuits
             gatesList.Add(newForm.newCompound);
             newForm.newCompound = null;
             current = gatesList[gatesList.Count - 1];
+            Compound c = current as Compound;
+            foreach(Gate g in c._gatesList)
+            {
+                gatesList.Remove(g);
+            }
         }
 
 
