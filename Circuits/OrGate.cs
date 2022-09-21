@@ -41,6 +41,11 @@ namespace Circuits
             }
         }
 
+        /// <summary>
+        /// To move the gate to another location
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public override void MoveTo(int x, int y)
         {
             //Debugging message
@@ -57,8 +62,13 @@ namespace Circuits
             pins[2].Y = y + HEIGHT / 2 + 5;
         }
 
+        /// <summary>
+        /// Evaluates the input wires
+        /// </summary>
+        /// <returns>true if one of the input wires is true</returns>
         public override bool Evaluate()
         {
+            //IF either input wire is true then return true, else return false
             if (Pins[0].InputWire.FromPin.Owner.Evaluate() == true || Pins[1].InputWire.FromPin.Owner.Evaluate() == true)
             {
                 return true;
@@ -69,6 +79,10 @@ namespace Circuits
             }
         }
 
+        /// <summary>
+        /// Clones the Or gate
+        /// </summary>
+        /// <returns></returns>
         public override Gate Clone()
         {
             OrGate cloneOrGate = new OrGate(_x, _y);

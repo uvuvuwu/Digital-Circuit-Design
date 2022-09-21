@@ -104,10 +104,7 @@ namespace Circuits
         /// Draws the gate in the normal colour or in the selected colour.
         /// </summary>
         /// <param name="paper"></param>
-        public virtual void Draw(Graphics paper)
-        {
-            
-        }
+        public abstract void Draw(Graphics paper);
 
         /// <summary>
         /// Moves the gate to the position specified.
@@ -136,6 +133,10 @@ namespace Circuits
         /// <returns></returns>
         public abstract bool Evaluate();
 
+        /// <summary>
+        /// The abstract Clone method which every gate inherits to clone the selected gate
+        /// </summary>
+        /// <returns></returns>
         public abstract Gate Clone();
     }
 }

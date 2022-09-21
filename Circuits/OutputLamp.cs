@@ -20,6 +20,9 @@ namespace Circuits
             MoveTo(x, y);
         }
 
+        /// <summary>
+        /// Gets and sets the voltage
+        /// </summary>
         public bool Voltage
         {
             get { return _voltage; }
@@ -27,6 +30,10 @@ namespace Circuits
             set { _voltage = value; }
         }
 
+        /// <summary>
+        /// Draws the Output lamp and pins
+        /// </summary>
+        /// <param name="paper"></param>
         public override void Draw(Graphics paper)
         {
             //Draw each of the pins
@@ -62,6 +69,11 @@ namespace Circuits
             }
         }
 
+        /// <summary>
+        /// Moves the gate and pins to a new location
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public override void MoveTo(int x, int y)
         {
             //Debugging message
@@ -74,20 +86,31 @@ namespace Circuits
             pins[0].Y = y + HEIGHT / 2;
         }
 
+        /// <summary>
+        /// Evaluates the input wire
+        /// </summary>
+        /// <returns>Voltage and bool value</returns>
         public override bool Evaluate()
         {
+            //IF the input wire is true
             if (Pins[0].InputWire.FromPin.Owner.Evaluate() == true)
             {
+                //voltage and value are true
                 Voltage = true;
                 return true;
             }
             else
             {
+                //voltage and value are false
                 Voltage = false;
                 return false;
             }
         }
 
+        /// <summary>
+        /// Clones the Output lamp
+        /// </summary>
+        /// <returns></returns>
         public override Gate Clone()
         {
             OutputLamp cloneOutputLamp = new OutputLamp(_voltage, _x, _y);

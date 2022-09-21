@@ -51,6 +51,10 @@ namespace Circuits
             pins[2].Y = y + HEIGHT / 2;
         }
 
+        /// <summary>
+        /// Draws the And gate and pins
+        /// </summary>
+        /// <param name="paper"></param>
         public override void Draw(Graphics paper)
         {
             Brush brush;
@@ -72,14 +76,16 @@ namespace Circuits
             paper.FillEllipse(brush, left, top, WIDTH, HEIGHT);
             paper.FillRectangle(brush, left, top, WIDTH / 2, HEIGHT);
 
-            //Note: You can also use the images that have been imported into the project if you wish,
-            //      using the code below.  You will need to space the pins out a bit more in the constructor.
-            //      There are provided images for the other gates and selected versions of the gates as well.
             //paper.DrawImage(Properties.Resources.AndGate, Left, Top);
         }
 
+        /// <summary>
+        /// Evaluates the two input pins
+        /// </summary>
+        /// <returns>true if both input pins are true</returns>
         public override bool Evaluate()
         {
+            //IF both input wires are true then return true, else return false
             if (Pins[0].InputWire.FromPin.Owner.Evaluate() == true && Pins[1].InputWire.FromPin.Owner.Evaluate() == true)
             {
                 return true;
@@ -90,6 +96,10 @@ namespace Circuits
             }
         }
 
+        /// <summary>
+        /// Clone the And gate
+        /// </summary>
+        /// <returns></returns>
         public override Gate Clone()
         {
             AndGate cloneAndGate = new AndGate(_x, _y);

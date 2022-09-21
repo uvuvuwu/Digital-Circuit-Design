@@ -96,10 +96,10 @@ namespace Circuits
                     if (g.IsMouseOn(e.X, e.Y))
                     {
                         g.Selected = true;
-                        //if (newForm.newCompound != null)
-                        //{
-                        //    newForm.newCompound.AddGate(g);
-                        //}
+                        if (newForm.newCompound != null)
+                        {
+                            newForm.newCompound.AddGate(g);
+                        }
                         current = g;
                         this.Invalidate();
 
@@ -268,11 +268,21 @@ namespace Circuits
             newGate = new InputSource(false, 0, 0);
         }
 
+        /// <summary>
+        /// Creates a new Output lamp
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void toolStripButtonOutput_Click(object sender, EventArgs e)
         {
             newGate = new OutputLamp(false, 0, 0);
         }
 
+        /// <summary>
+        /// Calls Evaluate method
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void toolStripButtonEvaluate_Click(object sender, EventArgs e)
         {
             foreach(Gate gate in gatesList)
@@ -297,7 +307,7 @@ namespace Circuits
         }
 
         /// <summary>
-        /// Starts a group
+        /// Starts a group/compound gate
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -316,6 +326,7 @@ namespace Circuits
         {
             gatesList.Add(newForm.newCompound);
             newForm.newCompound = null;
+            current = gatesList[gatesList.Count - 1];
         }
 
 

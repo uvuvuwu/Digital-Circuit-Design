@@ -44,12 +44,14 @@ namespace Circuits
             if (selected)
             {
                 brush = selectedBrush;
+                //draw the gate in red 
                 paper.FillRectangle(brush, left, top, WIDTH - 10, HEIGHT - 10);
 
             }
             else
             {
                 brush = normalBrush;
+                //draw the gate in light grey
                 paper.FillRectangle(brush, left, top, WIDTH - 10, HEIGHT - 10);
             }
             
@@ -90,8 +92,9 @@ namespace Circuits
         }
 
         /// <summary>
-        /// 
+        /// Evaluates the input source
         /// </summary>
+        /// <returns>the voltage</returns>
         public override bool Evaluate()
         {
             return Voltage;
@@ -123,6 +126,10 @@ namespace Circuits
             }
         }
 
+        /// <summary>
+        /// Clones the Input source 
+        /// </summary>
+        /// <returns></returns>
         public override Gate Clone()
         {
             InputSource cloneInputSource = new InputSource(_voltage, _x, _y); 

@@ -56,6 +56,10 @@ namespace Circuits
             pins[1].Y = y + 50 / 2;
         }
 
+        /// <summary>
+        /// Evaluates the input pin
+        /// </summary>
+        /// <returns>true or false</returns>
         public override bool Evaluate()
         {
             if (Pins[0].InputWire.FromPin.Owner.Evaluate() == true)
@@ -68,6 +72,10 @@ namespace Circuits
             }
         }
 
+        /// <summary>
+        /// Clones the Not gate
+        /// </summary>
+        /// <returns></returns>
         public override Gate Clone()
         {
             NotGate cloneNotGate = new NotGate(_x, _y);
