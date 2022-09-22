@@ -98,7 +98,7 @@ namespace Circuits
             {
                 //voltage and value are true
                 Voltage = true;
-                MessageBox.Show("The output is: " + Voltage);
+                //MessageBox.Show("The output is: " + Voltage);
                 return true;
                 
             }
@@ -106,7 +106,7 @@ namespace Circuits
             {
                 //voltage and value are false
                 Voltage = false;
-                MessageBox.Show("The output is: " + Voltage);
+                //MessageBox.Show("The output is: " + Voltage);
                 return false;
             }
             

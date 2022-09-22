@@ -23,13 +23,45 @@ namespace Circuits
         /// <param name="y"></param>
         public override void MoveTo(int x, int y)
         {
-            foreach(Gate gate in _gatesList)
+            //for (int i = 0; i < _gatesList.Count - 1; i++)
+            //{
+
+            //    //Check which gate in compound gate is the most left, then set the most left to the compound gate's left
+            //    if (_gatesList[i].Left < _gatesList[i + 1].Left)
+            //    {
+            //        left = _gatesList[i].Left;
+            //    }
+            //    //Check which gate in the compound gate is the most top, then set the most top to the compound gate's top
+            //    if (_gatesList[i].Top < _gatesList[i + 1].Top)
+            //    {
+            //        top = _gatesList[i].Top;
+            //    }
+            //}
+
+            //For every gate in the compound, save its current x position, y position
+            //When mouse moves, x + x of new position, y + y of new position
+            List<int> xGatePos = new List<int>();
+            List<int> yGatePos = new List<int>();
+            for (int j = 0; j < _gatesList.Count; j++)
             {
-                gate.MoveTo(x, y);
+                xGatePos.Add (_gatesList[j].Left);
+                yGatePos.Add (_gatesList[j].Top);
+                
             }
+            for (int k = 0; k < _gatesList.Count; k++)
+            {
+                _gatesList[k].MoveTo(x + _gatesList[k].Left, y + _gatesList[k].Top);
+            }
+
         }
-        
-        
+
+
+        public override bool Selected 
+        {
+            get { return selected; }
+            set { selected = value; }
+        }
+
         public override bool Evaluate()
         {
             throw new NotImplementedException();

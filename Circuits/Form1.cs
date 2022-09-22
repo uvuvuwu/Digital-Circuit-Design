@@ -76,6 +76,14 @@ namespace Circuits
         {
             if (current != null)
             {
+                if(current is Compound)
+                {
+                    Compound c = (Compound)current;
+                    foreach (Gate gate in c._gatesList)
+                    {
+                        gate.Selected = false;
+                    }
+                }
                 current.Selected = false;
                 current = null;
                 this.Invalidate();
@@ -96,6 +104,14 @@ namespace Circuits
                     if (g.IsMouseOn(e.X, e.Y))
                     {
                         g.Selected = true;
+                        if(g is Compound c)
+                        {
+                            foreach(Gate gate in c._gatesList)
+                            {
+                                gate.Selected = true;
+                            }
+                        }
+                        //Check if adding gate to a new compound gate
                         if (newForm != null && newForm.newCompound != null)
                         {
                             newForm.newCompound.AddGate(g);
@@ -164,7 +180,16 @@ namespace Circuits
             else if (startX >= 0 && startY >= 0 && current != null)
             {
                 Console.WriteLine("mouse move to " + e.X + "," + e.Y);
-                current.MoveTo(currentX + (e.X - startX), currentY + (e.Y - startY));
+                ////If gate is compound gate
+                //if (current is Compound c)
+                //{
+
+                //}
+                ////If gate is not compound gate
+                //else
+                //{
+                    current.MoveTo(currentX + (e.X - startX), currentY + (e.Y - startY));
+                //}
                 this.Invalidate();
             }
             else if (newGate != null)
@@ -287,7 +312,12 @@ namespace Circuits
         {
             foreach(Gate gate in gatesList)
             {
-                gate.Evaluate();
+                if(gate is OutputLamp)
+                {
+                    gate.Evaluate();
+                }
+                this.Invalidate();
+                
             }
         }
 
