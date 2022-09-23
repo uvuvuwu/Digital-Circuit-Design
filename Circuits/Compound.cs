@@ -26,37 +26,43 @@ namespace Circuits
         /// <param name="y"></param>
         public override void MoveTo(int x, int y)
         {
-            
-            //Going through gates list, checking the top most position and left most position, adding them to variables
-            for (int i = 0; i < _gatesList.Count - 1; i++)
+            foreach(Gate gate in _gatesList)
             {
-                if (_gatesList[i].Left >= _gatesList[i + 1].Left)
-                {
-                    leftmost = _gatesList[i].Left;
-                }
-                if (_gatesList[i].Top >= _gatesList[i + 1].Top)
-                {
-                    topmost = _gatesList[i].Top;
-                }
+                gate.MoveTo(x + (gate.Left - Left), y + (gate.Top - Top));
             }
 
-            int xPos = 0;
-            int yPos = 0;
-            int xPos1 = 0;
-            int yPos1 = 0;
-            //For every gate in the compound, save its current x position, y position
-            //When mouse moves, x + x of new position, y + y of new position
-            for (int j = 0; j < _gatesList.Count; j++)
-            {
-                xPos = x - leftmost;
-                yPos = y - topmost;
-                xPos1 = xPos + x;
-                yPos1 = yPos + y;
-                left = xPos1;
-                top = yPos1;
-                _gatesList[j].Left = xPos1;
-                _gatesList[j].Top = yPos1;
-            }
+            ////Going through gates list, checking the top most position and left most position, adding them to variables
+            //for (int i = 0; i < _gatesList.Count - 1; i++)
+            //{
+            //    if (_gatesList[i].Left >= _gatesList[i + 1].Left)
+            //    {
+            //        leftmost = _gatesList[i].Left;
+            //    }
+            //    if (_gatesList[i].Top >= _gatesList[i + 1].Top)
+            //    {
+            //        topmost = _gatesList[i].Top;
+            //    }
+            //}
+
+            //int xPos = 0;
+            //int yPos = 0;
+            //int xPos1 = 0;
+            //int yPos1 = 0;
+            ////For every gate in the compound, save its current x position, y position
+            ////When mouse moves, x + x of new position, y + y of new position
+            //for (int j = 0; j < _gatesList.Count; j++)
+            //{
+            //    //Get the difference between mouse position and left of compound
+            //    xPos = x - leftmost;
+            //    //Get the difference between mouse position and top of compound
+            //    yPos = y - topmost;
+            //    xPos1 = xPos + x;
+            //    yPos1 = yPos + y;
+            //    left = xPos1;
+            //    top = yPos1;
+            //    _gatesList[j].Left = xPos1;
+            //    _gatesList[j].Top = yPos1;
+            //}
 
         }
 
@@ -88,6 +94,9 @@ namespace Circuits
 
         public override void Draw(Graphics paper)
         {
+            Left = _gatesList[0].Left;
+            Top = _gatesList[0].Top;
+
             //loop through the gates list to draw the gates in the compound group
             foreach (Gate gate in _gatesList)
             {

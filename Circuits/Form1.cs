@@ -345,13 +345,20 @@ namespace Circuits
         /// <param name="e"></param>
         private void toolStripButtonEndGroup_Click(object sender, EventArgs e)
         {
-            gatesList.Add(newForm.newCompound);
-            newForm.newCompound = null;
-            current = gatesList[gatesList.Count - 1];
-            Compound c = current as Compound;
-            foreach(Gate g in c._gatesList)
+            if (newForm != null)
             {
-                gatesList.Remove(g);
+                gatesList.Add(newForm.newCompound);
+                newForm.newCompound = null;
+                current = gatesList[gatesList.Count - 1];
+                Compound c = current as Compound;
+                foreach (Gate g in c._gatesList)
+                {
+                    gatesList.Remove(g);
+                }
+            }
+            else
+            {
+
             }
         }
 
