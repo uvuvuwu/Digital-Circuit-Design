@@ -9,6 +9,9 @@ namespace Circuits
 {
     public class Compound : Gate
     {
+        public int topmost;
+        public int leftmost;
+
         public List<Gate> _gatesList; 
 
         public Compound (int x, int y) : base (x, y)
@@ -23,13 +26,36 @@ namespace Circuits
         /// <param name="y"></param>
         public override void MoveTo(int x, int y)
         {
+            
+            //Going through gates list, checking the top most position and left most position, adding them to variables
+            for (int i = 0; i < _gatesList.Count - 1; i++)
+            {
+                if (_gatesList[i].Left >= _gatesList[i + 1].Left)
+                {
+                    leftmost = _gatesList[i].Left;
+                }
+                if (_gatesList[i].Top >= _gatesList[i + 1].Top)
+                {
+                    topmost = _gatesList[i].Top;
+                }
+            }
+
+            int xPos = 0;
+            int yPos = 0;
+            int xPos1 = 0;
+            int yPos1 = 0;
             //For every gate in the compound, save its current x position, y position
             //When mouse moves, x + x of new position, y + y of new position
             for (int j = 0; j < _gatesList.Count; j++)
             {
-                int xPos = x + _gatesList[j].Left;
-                int yPos = y + _gatesList[j].Top;
-                _gatesList[j].MoveTo(xPos, yPos);
+                xPos = x - leftmost;
+                yPos = y - topmost;
+                xPos1 = xPos + x;
+                yPos1 = yPos + y;
+                left = xPos1;
+                top = yPos1;
+                _gatesList[j].Left = xPos1;
+                _gatesList[j].Top = yPos1;
             }
 
         }

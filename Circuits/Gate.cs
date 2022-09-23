@@ -67,6 +67,7 @@ namespace Circuits
         public virtual int Left
         {
             get { return left; }
+            set { left = value; }
         }
 
         /// <summary>
@@ -75,6 +76,7 @@ namespace Circuits
         public virtual int Top
         {
             get { return top; }
+            set { top = value; }
         }
 
         /// <summary>
