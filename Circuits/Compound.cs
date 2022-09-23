@@ -87,13 +87,18 @@ namespace Circuits
             foreach (Gate gate in _gatesList)
             {
                 gate.Draw(paper);
-
-                //add toggle for selecting (different colours) so entire compound is selected
             }
         }
 
+        /// <summary>
+        /// Overrides the IsMouseOn method and checks each gate in the list
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns>either true or false</returns>
         public override bool IsMouseOn(int x, int y)
         {
+            //FOR each gate in the list, check if the mouse is on it and return a value
             foreach(Gate g in _gatesList)
             {
                 if (g.IsMouseOn(x, y))
