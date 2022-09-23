@@ -179,17 +179,8 @@ namespace Circuits
             }
             else if (startX >= 0 && startY >= 0 && current != null)
             {
-                Console.WriteLine("mouse move to " + e.X + "," + e.Y);
-                ////If gate is compound gate
-                //if (current is Compound c)
-                //{
-
-                //}
-                ////If gate is not compound gate
-                //else
-                //{
-                    current.MoveTo(currentX + (e.X - startX), currentY + (e.Y - startY));
-                //}
+                Console.WriteLine("mouse move to " + e.X + "," + e.Y);  
+                current.MoveTo(currentX + (e.X - startX), currentY + (e.Y - startY));
                 this.Invalidate();
             }
             else if (newGate != null)
