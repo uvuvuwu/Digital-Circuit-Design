@@ -76,9 +76,11 @@ namespace Circuits
         {
             if (current != null)
             {
+                //If current gate is a compound gate
                 if(current is Compound)
                 {
                     Compound c = (Compound)current;
+                    //Set select for all gates in the compound gate's gateslist to false
                     foreach (Gate gate in c._gatesList)
                     {
                         gate.Selected = false;
@@ -106,10 +108,35 @@ namespace Circuits
                         g.Selected = true;
                         if(g is Compound c)
                         {
-                            foreach(Gate gate in c._gatesList)
+                            foreach (Gate gate in c._gatesList)
                             {
                                 gate.Selected = true;
                             }
+
+                            //Trying to add code so make it so that when you click on
+                            //an inputsource in a compound it changes colour and T/F
+                            List<int> inputListX = new List<int>();
+                            List<int> inputListY = new List<int>();
+                            foreach (Gate gate in c._gatesList)
+                            {
+                                gate.Selected = true;
+                                if (gate is InputSource)
+                                {
+                                    inputListX.Add(gate.Left);
+                                    inputListY.Add(gate.Top);
+                                }
+                            }
+                            for (int i = 0; i < inputListX.Count; i++)
+                            {
+                                if (c._gatesList[i] is InputSource)
+                                {
+                                    c._gatesList[i].IsMouseOn(e.X, e.Y);
+                                    Console.WriteLine("T");
+                                }
+                            }
+                            inputListX.Clear();
+                            inputListY.Clear();
+
                         }
                         //Check if adding gate to a new compound gate
                         if (newForm != null && newForm.newCompound != null)
@@ -135,6 +162,8 @@ namespace Circuits
                                 }
                             }
                         }
+
+                        this.Invalidate();
                         break;
                     }
                 }
@@ -345,17 +374,22 @@ namespace Circuits
         /// <param name="e"></param>
         private void toolStripButtonEndGroup_Click(object sender, EventArgs e)
         {
+            //If newForm is not null, end making compound gate
             if (newForm != null)
             {
+                //Add new compound gate to gates list
                 gatesList.Add(newForm.newCompound);
+                //Set new form new compound to null
                 newForm.newCompound = null;
                 current = gatesList[gatesList.Count - 1];
+                //Remove the gates in gates list that are now instead in the compound
                 Compound c = current as Compound;
                 foreach (Gate g in c._gatesList)
                 {
                     gatesList.Remove(g);
                 }
             }
+            //Else do nothing
             else
             {
 
