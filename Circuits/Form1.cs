@@ -113,30 +113,24 @@ namespace Circuits
                                 gate.Selected = true;
                             }
 
-                            //Trying to add code so make it so that when you click on
-                            //an inputsource in a compound it changes colour and T/F
-                            List<int> inputListX = new List<int>();
-                            List<int> inputListY = new List<int>();
-                            foreach (Gate gate in c._gatesList)
+                            //when you click on an inputsource in a compound it changes colour and T/F
+                            for (int i = 0; i < c._gatesList.Count; i++)
                             {
-                                gate.Selected = true;
-                                if (gate is InputSource)
+                                if(c._gatesList[i] is InputSource)
                                 {
-                                    inputListX.Add(gate.Left);
-                                    inputListY.Add(gate.Top);
+                                    if (((InputSource)c._gatesList[i]).IsMouseOnCircle(e.X, e.Y))
+                                    {
+                                        if (((InputSource)c._gatesList[i]).Voltage == false)
+                                        {
+                                            ((InputSource)c._gatesList[i]).Voltage = true;
+                                        }
+                                        else if (((InputSource)c._gatesList[i]).Voltage == true)
+                                        {
+                                            ((InputSource)c._gatesList[i]).Voltage = false;
+                                        }
+                                    }
                                 }
                             }
-                            for (int i = 0; i < inputListX.Count; i++)
-                            {
-                                if (c._gatesList[i] is InputSource)
-                                {
-                                    c._gatesList[i].IsMouseOn(e.X, e.Y);
-                                    Console.WriteLine("T");
-                                }
-                            }
-                            inputListX.Clear();
-                            inputListY.Clear();
-
                         }
                         //Check if adding gate to a new compound gate
                         if (newForm != null && newForm.newCompound != null)
