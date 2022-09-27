@@ -25,7 +25,7 @@ namespace Circuits
         }
 
         /// <summary>
-        /// Moving the whole compound object to another location. Is this right???
+        /// Moving the whole compound object to another location.
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
@@ -67,47 +67,13 @@ namespace Circuits
         {
             //Make a new compound
             Compound compound = new Compound(_x, _y);
-            //For each gate in the current compound, clone the gates, add the gates to new compound gates list
-            for(int i = 0; i < _gatesList.Count; i++)
+            //FOR each gate in the current compound, clone the gates, add the gates to new compound gates list
+            for (int i = 0; i < _gatesList.Count; i++)
             {
                 compound._gatesList.Add(_gatesList[i].Clone());
                 //Set the left and top of the new compound to be the same as the original one to keep its distances
                 compound._gatesList[i].Left = _gatesList[i].Left;
                 compound._gatesList[i].Top = _gatesList[i].Top;
-            }
-
-            //Trying to clone the pins and wires
-
-            //Looping through gatesList
-            for(int i = 0; i < _gatesList.Count; i++)
-            {
-                //Looping through pins
-                for(int k = 0; k < _gatesList[i].Pins.Count; k++)
-                {
-                    //If pin exists, and is input wire
-                    if(_gatesList[i].Pins[k].InputWire != null)
-                    {
-                        for(int j = 0; j < _gatesList.Count; j++)
-                        {
-                            //Finding the owner of the gate that the input wire came from
-                            if(_gatesList[i].Pins[k].InputWire.FromPin.Owner == _gatesList[j])
-                            {
-                                //Loop through gatesList to find the gate that the pin belongs to in gatesList[j], use that pin to connect
-                                //Put the found pin in place of 'Pin from' in the new Wire
-                                for(int l = 0; l < _gatesList.Count; l++)
-                                {
-                                    if ()
-                                    {
-                                        
-                                    }
-                                }
-                                //Make a new wire for the cloning of the compound as you can't "clone" a wire so 
-                                //cloning here is done manually
-                                Wire wire = new Wire(compound._gatesList[j].Pins[k], compound._gatesList[i].Pins[k]);
-                            }
-                        }
-                    }
-                }
             }
             //Return cloned compound
             return compound;
@@ -158,6 +124,44 @@ namespace Circuits
             }
             return false;
 
+        }
+
+        public List<Wire> CopyWires(Compound c)
+        {
+            List<Wire> wires = new List<Wire>();
+
+            //Looping through gatesList
+            for (int i = 0; i < _gatesList.Count; i++)
+            {
+                //Looping through pins
+                for (int k = 0; k < _gatesList[i].Pins.Count; k++)
+                {
+                    //If pin exists, and is input wire
+                    if (_gatesList[i].Pins[k].InputWire != null)
+                    {
+                        //Loop through gatesList to find the gate that the pin belongs to in gatesList[j].
+                        for (int j = 0; j < _gatesList.Count; j++)
+                        {
+                            //Finding the owner of the gate that the input wire came from
+                            if (_gatesList[i].Pins[k].InputWire.FromPin.Owner == _gatesList[j])
+                            {
+                                //Put the found pin in place of 'Pin from' in the new Wire
+                                for (int m = 0; m < _gatesList[j].Pins.Count; m++)
+                                {
+                                    if (_gatesList[j].Pins[m].IsOutput)
+                                    {
+                                        //Make a new wire for the cloning of the compound as you can't "clone" a wire so 
+                                        //cloning here is done manually
+                                        Wire wire = new Wire(c._gatesList[j].Pins[m], c._gatesList[i].Pins[k]);
+                                        wires.Add(wire);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return wires;
         }
     }
 }

@@ -347,6 +347,12 @@ namespace Circuits
             {
                 //Clone the currently selected gate
                 newGate = current.Clone();
+                if(current is Compound)
+                {
+                    Compound compound = (Compound)current;
+                    Compound compoundCopy = (Compound)newGate;
+                    wiresList.AddRange(compound.CopyWires(compoundCopy));
+                }
             }
         }
 
