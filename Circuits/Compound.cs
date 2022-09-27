@@ -93,6 +93,7 @@ namespace Circuits
                             if(_gatesList[i].Pins[k].InputWire.FromPin.Owner == _gatesList[j])
                             {
                                 //Loop through gatesList to find the gate that the pin belongs to in gatesList[j], use that pin to connect
+                                //Put the found pin in place of 'Pin from' in the new Wire
                                 for(int l = 0; l < _gatesList.Count; l++)
                                 {
                                     if ()
