@@ -10,6 +10,14 @@ using System.Windows.Forms;
 
 namespace Circuits
 {
+    //Q1: Better to fully document the Gate class as this is what the other classes inherit from, so if there are no comments in the Subclasses,
+    //at least the viewer can go back to the superclass to find out what the methods etc do. You can also hover over the properties which then
+    //allows you to see previous comments related to the object. Yes, comments can be inherited.
+    //Q2: Abstract methods don't have code inside, so they have to be overridden whereas virtual methods have code in and can be added to/built on.
+    //Q3: If a class has an abstract method in it, the class does have to be abstract.
+    //Q4: The design is not robust enough to support this. 
+
+
     /// <summary>
     /// The main GUI for the COMP104 digital circuits editor.
     /// This has a toolbar, containing buttons called buttonAnd, buttonOr, etc.
@@ -395,7 +403,6 @@ namespace Circuits
 
             }
         }
-
 
 
         /// <summary>
