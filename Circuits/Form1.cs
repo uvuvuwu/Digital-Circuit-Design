@@ -114,8 +114,10 @@ namespace Circuits
                     if (g.IsMouseOn(e.X, e.Y))
                     {
                         g.Selected = true;
+                        //If gate under the mouse is a compound gate
                         if(g is Compound c)
                         {
+                            //Set all the gates in the compound to selected
                             foreach (Gate gate in c._gatesList)
                             {
                                 gate.Selected = true;
@@ -147,7 +149,6 @@ namespace Circuits
                         }
                         current = g;
                         this.Invalidate();
-
                         //Check if the gate clicked on is InputSource
                         if (g is InputSource)
                         {
@@ -164,7 +165,6 @@ namespace Circuits
                                 }
                             }
                         }
-
                         this.Invalidate();
                         break;
                     }
@@ -334,7 +334,7 @@ namespace Circuits
         {
             foreach(Gate gate in gatesList)
             {
-                if(gate is OutputLamp)
+                if(gate is OutputLamp || gate is Compound)
                 {
                     gate.Evaluate();
                 }

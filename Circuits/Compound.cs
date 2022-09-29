@@ -41,22 +41,20 @@ namespace Circuits
         }
 
         /// <summary>
-        /// This is just the normal Selected property, I was going to override to do something else with it.
-        /// </summary>
-        public override bool Selected 
-        {
-            get { return selected; }
-            set { selected = value; }
-        }
-
-        /// <summary>
         /// Evaluates compound gate
         /// </summary>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
         public override bool Evaluate()
         {
-            throw new NotImplementedException();
+            foreach(Gate gate in _gatesList)
+            {
+                if (gate is OutputLamp o)
+                {
+                    o.Evaluate();
+                }
+            }
+            return true;
         }
 
         /// <summary>
@@ -123,9 +121,13 @@ namespace Circuits
                 }
             }
             return false;
-
         }
 
+        /// <summary>
+        /// Copies the wires
+        /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public List<Wire> CopyWires(Compound c)
         {
             List<Wire> wires = new List<Wire>();

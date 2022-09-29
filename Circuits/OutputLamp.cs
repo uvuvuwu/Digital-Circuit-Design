@@ -27,7 +27,6 @@ namespace Circuits
         public bool Voltage
         {
             get { return _voltage; }
-            //ask what value is!!
             set { _voltage = value; }
         }
 
